@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="row head">
+        <h1><a href="">Wikipedia search</a></h1>
+    </div>
+    <div class="row search">
+        <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 col-9 pl-0">
+            <input type="text" class="form-control" id="searchTerm" placeholder="Enter search term...">
+        </div>
+        <div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-3 pl-0">
+            <button id="search" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    <div class="row">
+        <div id="errors">
+
+        </div>
+        <ul id="result" class="result_list">
+        </ul>
+    </div>
+</div>
+</body>
+</html>

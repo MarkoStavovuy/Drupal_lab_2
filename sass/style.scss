@@ -1,0 +1,38 @@
+$mainFont: 'Montserrat', sans-serif;
+$margin: 20px;
+body
+{
+font-family: $mainFont;
+} 
+a:hover
+{
+	text-decoration: none;
+}
+h1
+{
+margin: 0 auto;
+}
+.head
+{
+margin-top: $margin;
+margin-bottom: $margin;
+text-align: center;
+}
+.search
+{
+margin-bottom: $margin;
+}
+.result_list
+{
+padding-left: 0;
+list-style: none;
+li
+{
+border-bottom: 1px solid #eee;
+margin-bottom: $margin;
+p
+{
+margin-bottom: $margin;
+}
+}
+}
