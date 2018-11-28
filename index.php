@@ -3,6 +3,8 @@ require_once("db.php");
 require_once("tpl/header.tpl.php");
 $stmt = $pdo->query("SELECT COUNT(*) FROM posts");
 $countPosts = $stmt->fetchColumn();
+$stmt2 = $pdo->query("SELECT * FROM posts");
+$posts = $stmt2->fetchAll();
 ?>
 <div class="container">
     <a href="create.php" class="add">Add new post</a>
@@ -17,11 +19,10 @@ $countPosts = $stmt->fetchColumn();
         <th>Delete</th>
     </tr>
     <?php
-    $stmt = $pdo->query("SELECT * FROM posts");
-    while ($post = $stmt->fetch()) {
+    foreach ($posts as $post) {
         echo "<tr><td>" . $post['id'] . "</td><td>" . $post['title'] . "</td><td>" . $post['body'] .
-            "</td><td><a href='edit.php?id=" . $post['id'] . "'/>Edit</a></td><td><a href='delete.php?id="
-            . $post['id'] . "'/>Delete</td></tr>";
+            "</td><td><a href='edit.php?id=" . $post['id'] . "'>Edit</a></td><td><a href='delete.php?id="
+            . $post['id'] . "'>Delete</a></td></tr>";
     }
     ?>
 </table>
