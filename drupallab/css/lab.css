@@ -1,0 +1,12 @@
+.wrapper-node .update-date {
+  float: left;
+  margin-right: 10px;
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+}
+.wrapper-node span {
+  color: #000;
+}
+.wrapper-node .author-name {
+  color: #aaa;
+}
