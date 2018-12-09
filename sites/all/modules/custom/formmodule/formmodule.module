@@ -1,0 +1,200 @@
+<?php
+
+/**
+ * @file
+ * This file contain hooks and other global functions.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function formmodule_menu() {
+  $items = [];
+  $items['formmodule'] = [
+    'title' => 'Travel form module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['formmodule_form'],
+    'access arguments' => ['access formmodule form'],
+  ];
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function formmodule_permission() {
+  return [
+    'access formmodule form' => [
+      'title' => t('Access for the Travel form module'),
+    ],
+  ];
+}
+
+/**
+ * Function to build form 'Form module'.
+ *
+ * @param $form
+ * @param $form_state
+ *
+ * @return array
+ */
+function formmodule_form($form, &$form_state) {
+  $form['markup']['#markup'] = format_string('<h4>@markup</h4>',
+    ['@markup' => t('In this form, I ask you to tell about your trips)')]);
+
+  $form['like_travel'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Choose if you like to travel :)'),
+    '#default_value' => 1,
+  ];
+
+  $form['machine_name'] = [
+    '#type' => 'machine_name',
+    '#title' => t('Enter machine-readable name for our module'),
+    '#default_value' => 'travel_form_module',
+    '#size' => 40,
+    '#maxlength' => 40,
+    '#machine_name' => [
+      'exists' => 'form_validate_machine_name',
+    ],
+  ];
+
+  $form['count_travel'] = [
+    '#type' => 'textfield',
+    '#title' => t('How many countries have you ever visited?'),
+    '#size' => 40,
+    '#maxlength' => 40,
+    '#required' => TRUE,
+    '#element_validate' => ['element_validate_integer_positive_or_zero'],
+  ];
+
+  $form['travel_experience'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Which countries have you ever visited?'),
+    '#options' => drupal_map_assoc([
+      t('Poland'),
+      t('Turkey'),
+      t('Italy'),
+      t('France'),
+      t('Germany'),
+      t('Other country'),
+    ]),
+    '#required' => TRUE,
+  ];
+
+  $form['travel_dream'] = [
+    '#type' => 'select',
+    '#title' => t('Which country would you like to visit?'),
+    '#options' => drupal_map_assoc([
+      t('Brazil'),
+      t('USA'),
+      t('Canada'),
+      t('Spain'),
+      t('Japan'),
+      t('Other country'),
+    ]),
+    '#required' => TRUE,
+    '#default_value' => 0,
+  ];
+
+  $form['travel_description'] = [
+    '#type' => 'textarea',
+    '#title' => t('Why would you like to visit this country?'),
+    '#required' => TRUE,
+  ];
+
+  $form['submit'] = [
+    '#type' => 'submit',
+    '#value' => t('Send'),
+  ];
+
+  return $form;
+}
+
+/**
+ * Validation function for integer field.
+ *
+ * @param $element
+ * @param $form_state
+ */
+function element_validate_integer_positive_or_zero($element, &$form_state) {
+  $value = $element['#value'];
+  if (!is_numeric($value) || intval($value) != $value || $value < 0) {
+    form_error($element, t('%name must be a positive integer.', ['%name' => $element['#title']]));
+  }
+}
+
+/**
+ * Submit handler for 'Form module'.
+ *
+ * @param $form
+ * @param $form_state
+ *
+ * @return void
+ */
+function formmodule_form_submit($form, &$form_state) {
+  // Check if user likes to travel and give some advice.
+  if ($form_state['values']['like_travel']) {
+    drupal_set_message(t("It's good that you love to travel, because traveling is fun and cognitive!"));
+  }
+  else {
+    drupal_set_message(t("Bad that you don't like to travel, our world is beautiful)"));
+  }
+
+  // Check the number of countries visited.
+  if ($form_state['values']['count_travel'] < 5) {
+    drupal_set_message(t("You're a 'junior' traveler)"));
+  }
+  else {
+    drupal_set_message(t("You've visited many countries already, but there are many interesting things in the world)"));
+  }
+
+  // Check the list of visited countries.
+  $visited_countries = array_filter($form_state['values']['travel_experience']);
+  if (count($visited_countries) > 1) {
+    // Convert an array into a string.
+    $visited_countries_str = implode(', ', $visited_countries);
+    drupal_set_message("You have visited such countries: " . $visited_countries_str . ". Not bad:)");
+  }
+  else {
+    drupal_set_message("You have visited only one country: " . array_shift($visited_countries) .
+      ". Continue to discover our wonderful world!");
+  }
+
+  // Check the country that the user wants to visit.
+  $travel_dream = $form_state['values']['travel_dream'];
+  switch ($travel_dream) {
+    case 'Brazil':
+      drupal_set_message("The country you want to visit: $travel_dream. Very hot country.");
+      break;
+
+    case 'USA':
+      drupal_set_message("The country you want to visit: $travel_dream. Very expensive country.");
+      break;
+
+    case 'Canada':
+      drupal_set_message("The country you want to visit: $travel_dream. There is a large Ukrainian diaspora.");
+      break;
+
+    case 'Spain':
+      drupal_set_message("The country you want to visit: $travel_dream. There are a lot of beautiful places.");
+      break;
+
+    case 'Japan':
+      drupal_set_message("The country you want to visit: $travel_dream. Very modern country.");
+      break;
+
+    case 'Other country':
+      drupal_set_message("You have chosen: $travel_dream. Describe below which country and why?");
+      break;
+
+    default:
+      drupal_set_message("Oops! This country is not listed!");
+      break;
+
+  }
+  // Check the user story and show it.
+  if ($form_state['values']['travel_description']) {
+    drupal_set_message(t("Thank you for your story!"));
+  }
+}

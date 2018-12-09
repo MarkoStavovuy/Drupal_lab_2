@@ -1,0 +1,5 @@
+name = Travel form module
+description = Form module for travelers.
+core = 7.x
+package = Custom
+configure = admin/config/formmodule/configuration
