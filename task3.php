@@ -1,9 +1,8 @@
 <?php
-require_once("header.tpl.php");
 echo "<h1>Task 3</h1>\n";
 function sum(int $n)
 {
-    if (isset($n) && !empty($n) && ($n > 1)) {
+    if (!empty($n) && ($n > 1)) {
         $sum = 0;
         for ($i = 1; $i <= $n; $i++) {
             $sum += $i;
@@ -15,4 +14,3 @@ function sum(int $n)
 }
 
 sum(6);
-require_once("footer.tpl.php");

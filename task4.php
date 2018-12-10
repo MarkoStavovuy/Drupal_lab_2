@@ -1,5 +1,4 @@
 <?php
-require_once("header.tpl.php");
 echo "<h1>Task 4</h1>\n";
 function roll(int $number)
 {
@@ -28,5 +27,3 @@ echo "<p>Dice2:" . $dice2 . " Label2: " . roll($dice2) . "</p>\n";
 if ($dice1 == $dice2) {
     echo "<p><strong>Jackpot!</strong></p>\n";
 }
-
-require_once("footer.tpl.php");

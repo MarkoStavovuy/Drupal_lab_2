@@ -1,17 +1,28 @@
 <?php
-require_once("header.tpl.php");
 echo "<h1>Task 2</h1>\n";
 function hypotenuse(int $a, int $b)
 {
-    if (!isset($a) || empty($a) || ($a < 0)) {
+    if (empty($a) || ($a < 0)) {
         echo "<p>Enter correct a!</p>";
-    } elseif (!isset($b) || empty($b) || ($b < 0)) {
+    } elseif (empty($b) || ($b < 0)) {
         echo "<p>Enter correct b!</p>";
     } else {
-        echo "Hypotenuse ($a,$b): " . sqrt(pow($a, 2) + pow($b, 2))."\n";
+        echo "Hypotenuse c (a:$a, b:$b): " . sqrt(pow($a, 2) + pow($b, 2)) . "\n";
     }
 
 }
 
 hypotenuse(3, 4);
-require_once("footer.tpl.php");
+
+function leg(int $a, int $c)
+{
+    if (empty($a) || ($a < 0)) {
+        echo "<p>Enter correct a!</p>";
+    } elseif (empty($c) || ($c < 0)) {
+        echo "<p>Enter correct c!</p>";
+    } else {
+        echo "<br>Leg b (a:$a, c:$c): " . sqrt(pow($c, 2) - pow($a, 2)) . "\n";
+    }
+}
+
+leg(3, 5);
