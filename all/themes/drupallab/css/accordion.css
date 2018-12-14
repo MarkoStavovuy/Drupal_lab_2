@@ -1,0 +1,11 @@
+.ziehharmonika h3.active {
+  margin-bottom: 20px;
+  background: #0071b3;
+}
+.ziehharmonika .active .arrowDown {
+  border-color: #0071b3 transparent transparent transparent;
+}
+.ziehharmonika > div
+{
+  border: 1px solid #ccc;
+}
