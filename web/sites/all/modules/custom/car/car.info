@@ -1,0 +1,4 @@
+name = Car manager
+description = Example of create Car entity
+core = 7.x
+package = Custom
