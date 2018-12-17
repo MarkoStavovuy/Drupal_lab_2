@@ -5,7 +5,6 @@
 .ziehharmonika .active .arrowDown {
   border-color: #0071b3 transparent transparent transparent;
 }
-.ziehharmonika > div
-{
+.ziehharmonika > div {
   border: 1px solid #ccc;
 }

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * This file contain hooks and other global functions.
+ * This file contain hooks.
  */
 
 /**
@@ -13,6 +13,7 @@ function drupallab_library() {
   $libraries['ziehharmonika'] = [
     'title' => 'Ziehharmonika',
     'website' => 'https://github.com/Arcwise/ziehharmonika',
+    'version' => '1.0',
     'js' => [
       'sites/all/libraries/ziehharmonika/ziehharmonika.js' => [],
     ],
@@ -31,10 +32,10 @@ function drupallab_preprocess_views_view(&$variables) {
   if ($variables['name'] == 'faq') {
     drupal_add_library('drupallab', 'ziehharmonika');
     drupal_add_js('sites/all/themes/drupallab/js/script.js', [
-      'group' => 'CSS_THEME',
+      'group' => JS_THEME,
     ]);
     drupal_add_css('sites/all/themes/drupallab/css/accordion.css', [
-      'group' => 'CSS_THEME',
+      'group' => CSS_THEME,
     ]);
   }
 }
