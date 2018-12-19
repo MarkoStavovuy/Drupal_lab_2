@@ -75,10 +75,11 @@ function car_show_callback() {
 
   // If rows aren't empty, theme the rows.
   if (!empty($table_rows)) {
-    $output = theme('table', [
-      'header' => $table_header,
-      'rows' => $table_rows,
-    ]);
+    $output = [
+      '#theme' => 'table',
+      '#header' => $table_header,
+      '#rows' => $table_rows,
+    ];
   }
   else {
     $output = "No records found.";
