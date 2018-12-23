@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Enable the modules views, views_ui and entityreference.
+ */
+
+/**
+ * Implements hook_update_n().
+ */
+function drupal_lab_site_update_7000(&$sandbox) {
+  $module_list = [
+    'views',
+    'views_ui',
+    'entityreference',
+  ];
+  module_enable($module_list);
+}

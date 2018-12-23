@@ -1,0 +1,17 @@
+name = Content type Product review
+description = Feature for Content type Product review
+core = 7.x
+package = Features
+version = 7.x-1.0
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = image
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = field_pr_body
+features[field_base][] = field_pr_review_image
+features[field_base][] = field_product
+features[field_instance][] = node-product_review-field_pr_body
+features[field_instance][] = node-product_review-field_pr_review_image
+features[field_instance][] = node-product_review-field_product
+features[node][] = product_review

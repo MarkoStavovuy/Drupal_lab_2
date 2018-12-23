@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Code for the Views Products feature.
+ */
+
+include_once 'features_views_products.features.inc';

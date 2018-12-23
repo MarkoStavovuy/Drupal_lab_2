@@ -1,0 +1,4 @@
+name = Drupal Lab Site
+description = Drupal lab site.
+core = 7.x
+package = Custom
