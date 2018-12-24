@@ -3,5 +3,4 @@ description = Drupal lab site.
 core = 7.x
 package = Custom
 dependencies[] = views:views
-dependencies[] = views:views_ui
 dependencies[] = entityreference:entityreference
